@@ -15,9 +15,11 @@ public class TestCollisionMonitor : MonoBehaviour {
 
 	public GameObject mouseBullet;
 
+	public GameObject globalObject;
+
 	// Use this for initialization
 	void Start () {
-		monitor = new UCollisionMonitor (10, 12, 10f, 12f, -5f, -6f);
+
 		for (int i = 0; i < 4000; i++) {
 			GameObject newBullet = 
 				Instantiate(bulletPrefab, 
@@ -27,7 +29,7 @@ public class TestCollisionMonitor : MonoBehaviour {
 
 			UBulletCollider ubc = newBullet.GetComponentInChildren<UBulletCollider>();
 			ubc.SetEnable (true);
-			monitor.AddBulletCollider (ubc);
+
 			ubc.GetActor().AddDefaultCallback(() => {
 				ubc.trans.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 			});
@@ -35,6 +37,7 @@ public class TestCollisionMonitor : MonoBehaviour {
 				ubc.trans.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 			});
 				
+			monitor.AddBulletCollider (ubc);
 		}
 		var mousePos = Input.mousePosition;
 		mousePos.z = 10; // select distance = 10 units from the camera
@@ -49,7 +52,7 @@ public class TestCollisionMonitor : MonoBehaviour {
 		monitor.AddTargetCollider (mouseBullet.GetComponentInChildren<UTargetCollider>());
 
 		// Add monitor to executor for mono-like update and start
-		executor.AddModule (monitor);
+		//executor.AddModule (monitor);
 	}
 	
 	// Update is called once per frame
