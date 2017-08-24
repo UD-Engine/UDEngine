@@ -18,7 +18,7 @@ public class TestCollisionMonitor : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		monitor = new UCollisionMonitor (10, 12, 10f, 12f, -5f, -6f);
-		for (int i = 0; i < 6000; i++) {
+		for (int i = 0; i < 4000; i++) {
 			GameObject newBullet = 
 				Instantiate(bulletPrefab, 
 					new Vector3(Random.Range(-5f, 5f) , Random.Range(-6f,6f), 0f), 
@@ -28,10 +28,10 @@ public class TestCollisionMonitor : MonoBehaviour {
 			UBulletCollider ubc = newBullet.GetComponentInChildren<UBulletCollider>();
 			ubc.SetEnable (true);
 			monitor.AddBulletCollider (ubc);
-			ubc.AddDefaultCallback(() => {
+			ubc.GetActor().AddDefaultCallback(() => {
 				ubc.trans.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 			});
-			ubc.AddCollisionCallback (() => {
+			ubc.GetActor().AddCollisionCallback (() => {
 				ubc.trans.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 			});
 				

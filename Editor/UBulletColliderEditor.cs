@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using UDEngine;
 using UDEngine.Components;
+using UDEngine.Components.Actor;
 using UDEngine.Components.Collision;
 
 [CustomEditor(typeof(UBulletCollider))]
