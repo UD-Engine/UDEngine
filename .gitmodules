@@ -1,3 +1,6 @@
 [submodule "Engine/Collision"]
 	path = Engine/Collision
 	url = git@github.com:UD-Engine/Collision.git
+[submodule "Engine/Pool"]
+	path = Engine/Pool
+	url = git@github.com:UD-Engine/Pool.git

@@ -5,6 +5,7 @@ using UDEngine;
 using UDEngine.Components;
 using UDEngine.Components.Actor;
 using UDEngine.Components.Collision;
+using UDEngine.Components.Bullet;
 
 [CustomEditor(typeof(UBulletCollider))]
 public class UBulletColliderEditor : Editor {
@@ -36,6 +37,8 @@ public class UBulletColliderEditor : Editor {
 			}
 		}
 		uCollider.SetTransform(EditorGUILayout.ObjectField("Transform", uCollider.trans, typeof(Transform), true) as Transform);
+
+		uCollider.manager = EditorGUILayout.ObjectField ("Bullet", uCollider.manager, typeof(UBulletManager), true) as UBulletManager;
 
 		uCollider.SetLayer(EditorGUILayout.IntField ("Layer", uCollider.layer));
 
