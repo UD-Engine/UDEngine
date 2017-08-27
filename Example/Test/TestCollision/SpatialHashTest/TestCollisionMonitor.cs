@@ -33,6 +33,7 @@ public class TestCollisionMonitor : MonoBehaviour {
 			ubc.GetActor().AddDefaultCallback(() => {
 				ubc.trans.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 			});
+
 			ubc.GetActor().AddCollisionCallback (() => {
 				ubc.trans.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 			});

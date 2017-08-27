@@ -38,7 +38,7 @@ public class UBulletColliderEditor : Editor {
 		}
 		uCollider.SetTransform(EditorGUILayout.ObjectField("Transform", uCollider.trans, typeof(Transform), true) as Transform);
 
-		uCollider.manager = EditorGUILayout.ObjectField ("Bullet", uCollider.manager, typeof(UBulletManager), true) as UBulletManager;
+		uCollider.bulletObject = EditorGUILayout.ObjectField ("Bullet", uCollider.bulletObject, typeof(UBulletObject), true) as UBulletObject;
 
 		uCollider.SetLayer(EditorGUILayout.IntField ("Layer", uCollider.layer));
 
