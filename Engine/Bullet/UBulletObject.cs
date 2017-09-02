@@ -65,8 +65,31 @@ namespace UDEngine.Components.Bullet {
 			}
 		}
 
+		// FIX: add null checker to avoid race condition that leaves Start() not ran
+		// and thus this._actor not created.
 		public UBulletActor GetActor() {
+			if (this._actor == null) {
+				_actor = new UBulletActor (this, collider);
+			}
 			return this._actor;
+		}
+		public UBulletCollider GetCollider() {
+			if (collider == null) {
+				collider = trans.GetComponentInChildren<UBulletCollider> ();
+			}
+			return this.collider;
+		}
+		public Transform GetTransform() {
+			if (trans == null) {
+				trans = this.transform;
+			}
+			return this.trans;
+		}
+		public SpriteRenderer GetSpriteRenderer() {
+			if (spriteRenderer == null) {
+				spriteRenderer = trans.GetComponentInChildren<SpriteRenderer> ();
+			}
+			return this.spriteRenderer;
 		}
 		#endregion
 	}

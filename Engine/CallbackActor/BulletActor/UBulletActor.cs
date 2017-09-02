@@ -41,6 +41,9 @@ namespace UDEngine.Components.Actor {
 		public UBulletObject GetObject() {
 			return this.bulletObject;
 		}
+		public UBulletCollider GetCollider() {
+			return this.collider;
+		}
 
 		public void AddCollisionCallback(UnityAction callback) {
 			if (collisionEvent == null) {
