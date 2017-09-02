@@ -78,6 +78,9 @@ namespace UDEngine.Components.Bullet {
 		public SpriteRenderer GetSpriteRenderer() {
 			return this.spriteRenderer;
 		}
+		public List<UBulletObject> GetChildren() {
+			return this.children;
+		}
 
 
 		public void SetPoolManager(UBulletPoolManager manager) {
@@ -85,8 +88,8 @@ namespace UDEngine.Components.Bullet {
 		}
 
 
-		public void Recycle() {
-			this.poolManager.RecycleBullet (this);
+		public void Recycle(bool shouldRecycleChildren = false, bool shouldSplitChildrenOnRecycle = false) {
+			this.poolManager.RecycleBullet (this, shouldRecycleChildren, shouldSplitChildrenOnRecycle);
 			//this.collider.SetRecyclable (true); // True recycling is called in UCollisionMonitor
 		}
 		#endregion
