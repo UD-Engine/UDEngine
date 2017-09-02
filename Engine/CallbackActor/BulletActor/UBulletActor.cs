@@ -117,6 +117,13 @@ namespace UDEngine.Components.Actor {
 		}
 
 
+		public void ClearAllCallbacks() {
+			ClearDefaultCallbacks ();
+			ClearCollisionCallbacks ();
+			ClearBoundaryCallbacks ();
+		}
+
+
 		public void AddTweenSequence(Sequence seq) {
 			if (tweenSequences == null) {
 				tweenSequences = new List<Sequence> ();

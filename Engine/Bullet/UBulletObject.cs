@@ -6,6 +6,7 @@ using UDEngine;
 using UDEngine.Components;
 using UDEngine.Components.Collision;
 using UDEngine.Components.Actor;
+using UDEngine.Components.Pool;
 using UDEngine.Internal;
 using UDEngine.Interface;
 
@@ -46,6 +47,7 @@ namespace UDEngine.Components.Bullet {
 		// Recycle ID is used for recycling into the Pool. 
 		// This would be MUCH better than using the Dictionary for reversed mapping
 		public int poolID = -1;
+		public UBulletPoolManager poolManager;
 		#endregion
 
 		#region METHOD
@@ -75,6 +77,17 @@ namespace UDEngine.Components.Bullet {
 		}
 		public SpriteRenderer GetSpriteRenderer() {
 			return this.spriteRenderer;
+		}
+
+
+		public void SetPoolManager(UBulletPoolManager manager) {
+			this.poolManager = manager;
+		}
+
+
+		public void Recycle() {
+			this.poolManager.RecycleBullet (this);
+			//this.collider.SetRecyclable (true); // True recycling is called in UCollisionMonitor
 		}
 		#endregion
 	}
