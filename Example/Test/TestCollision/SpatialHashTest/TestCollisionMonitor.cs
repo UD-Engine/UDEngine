@@ -20,7 +20,7 @@ public class TestCollisionMonitor : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		for (int i = 0; i < 4000; i++) {
+		for (int i = 0; i < 6000; i++) {
 			GameObject newBullet = 
 				Instantiate(bulletPrefab, 
 					new Vector3(Random.Range(-5f, 5f) , Random.Range(-6f,6f), 0f), 

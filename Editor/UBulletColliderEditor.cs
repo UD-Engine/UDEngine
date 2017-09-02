@@ -38,7 +38,9 @@ public class UBulletColliderEditor : Editor {
 		}
 		uCollider.SetTransform(EditorGUILayout.ObjectField("Transform", uCollider.trans, typeof(Transform), true) as Transform);
 
-		uCollider.bulletObject = EditorGUILayout.ObjectField ("Bullet", uCollider.bulletObject, typeof(UBulletObject), true) as UBulletObject;
+		uCollider.bulletObject = EditorGUILayout.ObjectField ("Bullet Object", uCollider.bulletObject, typeof(UBulletObject), true) as UBulletObject;
+
+		uCollider.actor = EditorGUILayout.ObjectField ("Actor", uCollider.actor, typeof(UBulletActor), true) as UBulletActor;
 
 		uCollider.SetLayer(EditorGUILayout.IntField ("Layer", uCollider.layer));
 

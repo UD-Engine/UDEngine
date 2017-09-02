@@ -19,15 +19,29 @@ namespace UDEngine.Components.Actor {
 	/// <summary>
 	/// Where all the callbacks live
 	/// </summary>
-	public class UBulletActor {
+	public class UBulletActor : MonoBehaviour {
 		public UBulletActor(UBulletObject obj, UBulletCollider ubc) {
 			this.bulletObject = obj;
 			this.collider = ubc;
 		}
 
+		#region UNITYFUNC
+		void Start() {
+			if (this.bulletObject == null) {
+				UDebug.Error ("bullet object not set");
+			}
+			if (this.collider == null) {
+				UDebug.Error ("bullet collider not set");
+			}
+		}
+
+		void Update() {
+		}
+		#endregion
+
 		#region PROP
-		public UBulletCollider collider; // Reference to UBulletCollider
-		public UBulletObject bulletObject;
+		public UBulletCollider collider = null; // Reference to UBulletCollider
+		public UBulletObject bulletObject = null;
 
 		public UnityEvent collisionEvent = null; // Event on colliding with player
 		public UnityEvent defaultEvent = null; // Event that would be triggered every frame if the collider is monitored

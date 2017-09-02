@@ -24,9 +24,8 @@ namespace UDEngine.Components.Bullet {
 			if (collider == null) {
 				collider = trans.GetComponentInChildren<UBulletCollider> ();
 			}
-
-			if (_actor == null) {
-				_actor = new UBulletActor (this, collider);
+			if (actor == null) {
+				actor = trans.GetComponentInChildren<UBulletActor> ();
 			}
 		}
 	
@@ -40,10 +39,9 @@ namespace UDEngine.Components.Bullet {
 		public SpriteRenderer spriteRenderer;
 		public UBulletCollider collider = null;
 		public List<UBulletObject> children;
+		public UBulletActor actor = null;
 
 		public Transform trans = null; // caching transform can always get better performance
-
-		private UBulletActor _actor = null;
 
 		// Recycle ID is used for recycling into the Pool. 
 		// This would be MUCH better than using the Dictionary for reversed mapping
@@ -65,30 +63,17 @@ namespace UDEngine.Components.Bullet {
 			}
 		}
 
-		// FIX: add null checker to avoid race condition that leaves Start() not ran
-		// and thus this._actor not created.
+		// As UBulletActor is MONO-ized, the old problem should no longer exist anymore
 		public UBulletActor GetActor() {
-			if (this._actor == null) {
-				_actor = new UBulletActor (this, collider);
-			}
-			return this._actor;
+			return this.actor;
 		}
 		public UBulletCollider GetCollider() {
-			if (collider == null) {
-				collider = trans.GetComponentInChildren<UBulletCollider> ();
-			}
 			return this.collider;
 		}
 		public Transform GetTransform() {
-			if (trans == null) {
-				trans = this.transform;
-			}
 			return this.trans;
 		}
 		public SpriteRenderer GetSpriteRenderer() {
-			if (spriteRenderer == null) {
-				spriteRenderer = trans.GetComponentInChildren<SpriteRenderer> ();
-			}
 			return this.spriteRenderer;
 		}
 		#endregion
