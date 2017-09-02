@@ -48,6 +48,9 @@ namespace UDEngine.Components.Bullet {
 		// This would be MUCH better than using the Dictionary for reversed mapping
 		public int poolID = -1;
 		public UBulletPoolManager poolManager;
+
+		// This props is used for adding cacheable props by the user
+		public Dictionary<string, Object> props;
 		#endregion
 
 		#region METHOD
@@ -80,6 +83,12 @@ namespace UDEngine.Components.Bullet {
 		}
 		public List<UBulletObject> GetChildren() {
 			return this.children;
+		}
+		public Object GetProp(string name) {
+			return this.props [name];
+		}
+		public void SetProp(string name, Object value) {
+			this.props.Add (name, value);
 		}
 
 
