@@ -46,6 +46,7 @@ namespace UDEngine.Components.Actor {
 		public UnityEvent collisionEvent = null; // Event on colliding with player
 		public UnityEvent defaultEvent = null; // Event that would be triggered every frame if the collider is monitored
 		public UnityEvent boundaryEvent = null; // Event that would be triggered when meeting with the monitor boundary
+		public UnityEvent recycleEvent = null; // Event triggered on recycling, it will be called in UBulletObject.Recycle()
 
 		// This is used to track all active tween sequences, so that they could be cleanly killed
 		public List<Sequence> tweenSequences; // This should be lazily initialized.
@@ -116,11 +117,30 @@ namespace UDEngine.Components.Actor {
 			boundaryEvent = null;
 		}
 
+		public void AddRecycleCallback(UnityAction callback) {
+			if (recycleEvent == null) {
+				recycleEvent = new UnityEvent ();
+			}
+			recycleEvent.AddListener (callback);
+		}
+
+		public void InvokeRecycleCallbacks() {
+			if (recycleEvent == null) {
+				// DO NOTHING, and don't warn anything, as this might be useful
+			} else {
+				recycleEvent.Invoke ();
+			}
+		}
+
+		public void ClearRecycleCallbacks() {
+			recycleEvent = null;
+		}
 
 		public void ClearAllCallbacks() {
 			ClearDefaultCallbacks ();
 			ClearCollisionCallbacks ();
 			ClearBoundaryCallbacks ();
+			ClearRecycleCallbacks ();
 		}
 
 

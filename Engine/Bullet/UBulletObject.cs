@@ -39,10 +39,12 @@ namespace UDEngine.Components.Bullet {
 		#region PROP
 		public SpriteRenderer spriteRenderer;
 		public UBulletCollider collider = null;
+		public UBulletObject parent = null;
 		public List<UBulletObject> children;
 		public UBulletActor actor = null;
 
 		public Transform trans = null; // caching transform can always get better performance
+		public Transform childTrans = null;
 
 		// Recycle ID is used for recycling into the Pool. 
 		// This would be MUCH better than using the Dictionary for reversed mapping
@@ -81,9 +83,32 @@ namespace UDEngine.Components.Bullet {
 		public SpriteRenderer GetSpriteRenderer() {
 			return this.spriteRenderer;
 		}
+
+
 		public List<UBulletObject> GetChildren() {
 			return this.children;
 		}
+		public Transform GetChildTransform() {
+			return this.childTrans;
+		}
+		public void AddChild(UBulletObject obj) {
+			if (this.children == null) {
+				this.children = new List<UBulletObject> ();
+			}
+			this.children.Add (obj);
+			obj.SetParent (this);
+			obj.GetTransform ().SetParent (this.childTrans);
+		}
+		public void RemoveChild(UBulletObject obj, bool shouldReturnToPool = true) {
+			this.children.Remove (obj); // SLOW, but should be okay...
+			obj.SetParent(null);
+			if (shouldReturnToPool) {
+				// Setting its parent transform back to the pool itself
+				obj.GetTransform ().SetParent (obj.GetPoolManager ().GetPoolTransform ());
+			}
+		}
+
+
 		public Object GetProp(string name) {
 			return this.props [name];
 		}
@@ -91,15 +116,25 @@ namespace UDEngine.Components.Bullet {
 			this.props.Add (name, value);
 		}
 
-
+		public UBulletPoolManager GetPoolManager() {
+			return this.poolManager;
+		}
 		public void SetPoolManager(UBulletPoolManager manager) {
 			this.poolManager = manager;
 		}
 
+		public UBulletObject GetParent() {
+			return this.parent;
+		}
+
+		public void SetParent(UBulletObject obj) {
+			this.parent = obj;
+		}
+
 
 		public void Recycle(bool shouldRecycleChildren = false, bool shouldSplitChildrenOnRecycle = false) {
+			this.actor.InvokeRecycleCallbacks (); // Recycle callback is called HERE, NOT in the poolManager one...
 			this.poolManager.RecycleBullet (this, shouldRecycleChildren, shouldSplitChildrenOnRecycle);
-			//this.collider.SetRecyclable (true); // True recycling is called in UCollisionMonitor
 		}
 		#endregion
 	}
