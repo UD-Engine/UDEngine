@@ -10,6 +10,8 @@ using UDEngine.Components.Pool;
 using UDEngine.Internal;
 using UDEngine.Interface;
 
+using DG.Tweening;
+
 namespace UDEngine.Components.Bullet {
 	public class UBulletObject : MonoBehaviour {
 
@@ -135,6 +137,18 @@ namespace UDEngine.Components.Bullet {
 		public void Recycle(bool shouldRecycleChildren = false, bool shouldSplitChildrenOnRecycle = false) {
 			this.actor.InvokeRecycleCallbacks (); // Recycle callback is called HERE, NOT in the poolManager one...
 			this.poolManager.RecycleBullet (this, shouldRecycleChildren, shouldSplitChildrenOnRecycle);
+		}
+
+
+		public void KillAllTweenAndTweenSequence(bool isRecursive = true) {
+			this.trans.DOKill ();
+			this.actor.KillAllTweenSequences ();
+
+			if (isRecursive) {
+				foreach (UBulletObject childObject in this.children) {
+					childObject.KillAllTweenAndTweenSequence ();
+				}
+			}
 		}
 		#endregion
 	}
