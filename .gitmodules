@@ -4,3 +4,6 @@
 [submodule "Engine/Pool"]
 	path = Engine/Pool
 	url = git@github.com:UD-Engine/Pool.git
+[submodule "Engine/Shooter"]
+	path = Engine/Shooter
+	url = git@github.com:UD-Engine/Shooter
