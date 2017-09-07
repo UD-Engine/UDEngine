@@ -31,5 +31,15 @@ namespace KSM.Tweening {
 				return trans.DORotate (new Vector3 (0f, 0f, -360f), Mathf.Abs(dummy_time), RotateMode.WorldAxisAdd).SetEase (Ease.Linear).SetLoops (-1).OnPause(() => trans.DOKill());
 			}
 		}
+
+		public static LTDescr LeanMoveUp(this Transform trans, float speed, bool snapping = false, float displacement = 1000f) {
+			Vector3 position = trans.position;
+			Vector3 up = trans.up;
+			float time = displacement / speed;
+
+			Vector3 endposition = position + new Vector3 (up.x * displacement, up.y * displacement, up.z * displacement);
+
+			return LeanTween.move (trans.gameObject, endposition, time);
+		}
 	}
 }

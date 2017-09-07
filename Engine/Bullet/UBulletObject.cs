@@ -150,6 +150,17 @@ namespace UDEngine.Components.Bullet {
 				}
 			}
 		}
+
+		public void KillAllLeanTweenAndLeanTweenSequence(bool isRecursive = true) {
+			this.actor.KillAllLeanTweens ();
+			this.actor.KillAllLeanTweenSequences ();
+
+			if (isRecursive) {
+				foreach (UBulletObject childObject in this.children) {
+					childObject.KillAllLeanTweenAndLeanTweenSequence ();
+				}
+			}
+		}
 		#endregion
 	}
 }

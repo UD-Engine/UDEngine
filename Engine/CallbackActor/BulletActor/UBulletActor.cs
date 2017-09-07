@@ -50,6 +50,10 @@ namespace UDEngine.Components.Actor {
 
 		// This is used to track all active tween sequences, so that they could be cleanly killed
 		public List<Sequence> tweenSequences; // This should be lazily initialized.
+
+		public List<int> leanTweenSequences; // Testing for LeanTween
+		public List<int> leanTweenIDs; // Testing for LeanTween
+		// HIGHLIGHT: after consideration, I decide NOT to move to LinkedList, as killing all the actual most common action
 		#endregion
 
 		#region METHOD
@@ -169,6 +173,7 @@ namespace UDEngine.Components.Actor {
 				UDebug.Error ("cannot find tween sequence of the given index, kill fails");
 			} else {
 				tweenSequences [index].Kill ();
+				tweenSequences.RemoveAt (index); // Removing seq reference. SLOW!!! But this is RARE, so it should be okay
 			}
 		}
 		public void KillAllTweenSequences() {
@@ -177,6 +182,85 @@ namespace UDEngine.Components.Actor {
 					seq.Kill ();
 				}
 			}
+			tweenSequences = new List<Sequence> (); // Cleanup
+		}
+
+
+		public void AddLeanTweenSequenceID(int seqID) {
+			if (leanTweenSequences == null) {
+				leanTweenSequences = new List<int> ();
+			}
+			leanTweenSequences.Add (seqID);
+		}
+		public int GetLeanTweenSequenceIDAt(int index) {
+			if (leanTweenSequences == null) {
+				leanTweenSequences = new List<int> ();
+			}
+			if (index >= leanTweenSequences.Count || index < 0) {
+				UDebug.Error ("cannot find tween sequence of the given index");
+			}
+			return leanTweenSequences [index];
+		}
+		public void KillLeanTweenSequenceAt(int index) {
+			if (leanTweenSequences == null) {
+				leanTweenSequences = new List<int> ();
+			}
+			if (index >= leanTweenSequences.Count || index < 0) {
+				UDebug.Error ("cannot find tween sequence of the given index, kill fails");
+			} else {
+				LeanTween.cancel(leanTweenSequences [index]);
+				leanTweenSequences.RemoveAt (index); // Removing seq reference. SLOW!!! But this is RARE, so it should be okay
+			}
+		}
+		public void KillAllLeanTweenSequences() {
+			if (leanTweenSequences != null) { // not null, else do NOTHING
+				foreach (int seqID in leanTweenSequences) {
+					LeanTween.cancel (seqID);
+				}
+			}
+
+			// BUGFIX: resetting leanTweenSequences after this;
+			leanTweenSequences = new List<int>();
+		}
+
+
+		public void AddLeanTweenID(int tweenID) {
+			if (leanTweenIDs == null) {
+				leanTweenIDs = new List<int> ();
+			}
+			leanTweenIDs.Add (tweenID);
+		}
+		public int GetLeanTweenIDAt(int index) {
+			if (leanTweenIDs == null) {
+				leanTweenIDs = new List<int> ();
+			}
+			if (index >= leanTweenIDs.Count || index < 0) {
+				UDebug.Error ("cannot find tween sequence of the given index");
+			}
+			return leanTweenIDs [index];
+		}
+		public void KillLeanTweenAt(int index) {
+			if (leanTweenIDs == null) {
+				leanTweenIDs = new List<int> ();
+			}
+			if (index >= leanTweenIDs.Count || index < 0) {
+				UDebug.Error ("cannot find tween sequence of the given index, kill fails");
+			} else {
+				LeanTween.cancel(leanTweenIDs [index]);
+				leanTweenIDs.RemoveAt (index); // Removing tween reference. SLOW!!! But this is RARE, so it should be okay
+			}
+		}
+		public void KillAllLeanTweens() {
+			if (leanTweenIDs != null) { // not null, else do NOTHING
+				foreach (int tweenID in leanTweenIDs) {
+					while (LeanTween.isTweening (tweenID)) { // BUGFIX: Safety check... THIS IS NOT WORKING!!!
+						LeanTween.cancel (tweenID);
+					}
+				}
+			}
+
+			// BUGFIX: resetting leanTweenIDs after this;
+			leanTweenIDs = new List<int>();
 		}
 		#endregion
 	}
