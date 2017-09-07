@@ -42,6 +42,9 @@ public class TestShooterBasic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		LeanTween.init (10000);
+
+
 		var mousePos = Input.mousePosition;
 		mousePos.z = 10; // select distance = 10 units from the camera
 		mouseBullet.GetComponentInChildren<SpriteRenderer> ().color = Color.green;
@@ -72,61 +75,77 @@ public class TestShooterBasic : MonoBehaviour {
 	void ConfigureShooter(UShooter shooter, bool isEven) {
 		if (isEven) {
 			shooter
-			.AddStage (new UShootStageSameInterval (5000, 0.0001f, 0, (UBulletObject bulletObject) => {
-				bulletObject.GetActor ().AddDefaultCallback (() => {
-					bulletObject.GetSpriteRenderer ().color = Color.white;
-				});
-				bulletObject.GetActor ().AddCollisionCallback (() => {
-					bulletObject.GetSpriteRenderer ().color = Color.red;
-				});
-				bulletObject.GetActor ().AddBoundaryCallback (() => {
-					bulletObject.Recycle ();
-				});
-				bulletObject.GetTransform ().DOMoveUp (1.5f);
-			}))
-			.AddStage (new UShootStageWait (1f))
-			.AddStage (new UShootStageSameInterval (5000, 0.0001f, 1, (UBulletObject bulletObject) => {
-				bulletObject.GetActor ().AddDefaultCallback (() => {
-					bulletObject.GetSpriteRenderer ().color = Color.white;
-				});
-				bulletObject.GetActor ().AddCollisionCallback (() => {
-					bulletObject.GetSpriteRenderer ().color = Color.red;
-				});
-				bulletObject.GetActor ().AddBoundaryCallback (() => {
-					bulletObject.Recycle ();
-				});
-					bulletObject.GetTransform ().DOMoveUp (1.5f);
-			}))
-			.SetLoopType (EShooterLoopType.BOUNCE);
+				.AddStage (new UShootStageSameInterval (5000, 0.001f, 0, (UBulletObject bulletObject) => {
+					/*
+					bulletObject.GetActor ().AddDefaultCallback (() => {
+						bulletObject.GetSpriteRenderer ().color = Color.white;
+					});
+					bulletObject.GetActor ().AddCollisionCallback (() => {
+						bulletObject.GetSpriteRenderer ().color = Color.red;
+					});
+					*/
+					bulletObject.GetActor ().AddBoundaryCallback (() => {
+						bulletObject.Recycle ();
+					});
+					//bulletObject.GetTransform ().DOMoveUp (1.5f);
+					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+					bulletObject.GetActor().AddLeanTweenID(moveID);
+				}))
+				.AddStage (new UShootStageWait (1f))
+				.AddStage (new UShootStageSameInterval (5000, 0.001f, 1, (UBulletObject bulletObject) => {
+					/*
+					bulletObject.GetActor ().AddDefaultCallback (() => {
+						bulletObject.GetSpriteRenderer ().color = Color.white;
+					});
+					bulletObject.GetActor ().AddCollisionCallback (() => {
+						bulletObject.GetSpriteRenderer ().color = Color.red;
+					});
+					*/
+					bulletObject.GetActor ().AddBoundaryCallback (() => {
+						bulletObject.Recycle ();
+					});
+					//bulletObject.GetTransform ().DOMoveUp (1.5f);
+					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+					bulletObject.GetActor().AddLeanTweenID(moveID);
+				}))
+				.SetLoopType (EShooterLoopType.BOUNCE);
 
 			shooter.Shoot ();
 			shooter.GetTransform ().DORotateForever (1f);
 		} else {
 			shooter
-				.AddStage (new UShootStageSameInterval (10000, 0.0001f, 1, (UBulletObject bulletObject) => {
+				.AddStage (new UShootStageSameInterval (10000, 0.001f, 1, (UBulletObject bulletObject) => {
+					/*
 					bulletObject.GetActor ().AddDefaultCallback (() => {
 						bulletObject.GetSpriteRenderer ().color = Color.white;
 					});
 					bulletObject.GetActor ().AddCollisionCallback (() => {
 						bulletObject.GetSpriteRenderer ().color = Color.red;
 					});
+					*/
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					bulletObject.GetTransform ().DOMoveUp (1.5f);
+					//bulletObject.GetTransform ().DOMoveUp (1.5f);
+					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
 				.AddStage (new UShootStageWait (1f))
-				.AddStage (new UShootStageSameInterval (10000, 0.0001f, 0, (UBulletObject bulletObject) => {
+				.AddStage (new UShootStageSameInterval (10000, 0.001f, 0, (UBulletObject bulletObject) => {
+					/*
 					bulletObject.GetActor ().AddDefaultCallback (() => {
 						bulletObject.GetSpriteRenderer ().color = Color.white;
 					});
 					bulletObject.GetActor ().AddCollisionCallback (() => {
 						bulletObject.GetSpriteRenderer ().color = Color.red;
 					});
+					*/
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					bulletObject.GetTransform ().DOMoveUp (1.5f);
+					//bulletObject.GetTransform ().DOMoveUp (1.5f);
+					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
 				.SetLoopType (EShooterLoopType.BOUNCE);
 
