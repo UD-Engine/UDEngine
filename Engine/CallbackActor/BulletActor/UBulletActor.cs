@@ -64,95 +64,123 @@ namespace UDEngine.Components.Actor {
 			return this.collider;
 		}
 
-		public void AddCollisionCallback(UnityAction callback) {
+		public UBulletActor AddCollisionCallback(UnityAction callback) {
 			if (collisionEvent == null) {
 				collisionEvent = new UnityEvent ();
 			}
 			collisionEvent.AddListener (callback);
+
+			return this;
 		}
 
-		public void InvokeCollisionCallbacks() {
+		public UBulletActor InvokeCollisionCallbacks() {
 			if (collisionEvent == null) {
 				// DO NOTHING, and don't warn anything, as this might be useful
 			} else {
 				collisionEvent.Invoke ();
 			}
+
+			return this;
 		}
 
-		public void ClearCollisionCallbacks() {
+		public UBulletActor ClearCollisionCallbacks() {
 			collisionEvent = null;
+
+			return this;
 		}
 
-		public void AddDefaultCallback(UnityAction callback) {
+		public UBulletActor AddDefaultCallback(UnityAction callback) {
 			if (defaultEvent == null) {
 				defaultEvent = new UnityEvent ();
 			}
 			defaultEvent.AddListener (callback);
+
+			return this;
 		}
 
-		public void InvokeDefaultCallbacks() {
+		public UBulletActor InvokeDefaultCallbacks() {
 			if (defaultEvent == null) {
 				// DO NOTHING, and don't warn anything, as this might be useful
 			} else {
 				defaultEvent.Invoke ();
 			}
+
+			return this;
 		}
 
-		public void ClearDefaultCallbacks() {
+		public UBulletActor ClearDefaultCallbacks() {
 			defaultEvent = null;
+
+			return this;
 		}
 
-		public void AddBoundaryCallback(UnityAction callback) {
+		public UBulletActor AddBoundaryCallback(UnityAction callback) {
 			if (boundaryEvent == null) {
 				boundaryEvent = new UnityEvent ();
 			}
 			boundaryEvent.AddListener (callback);
+
+			return this;
 		}
 
-		public void InvokeBoundaryCallbacks() {
+		public UBulletActor InvokeBoundaryCallbacks() {
 			if (boundaryEvent == null) {
 				// DO NOTHING, and don't warn anything, as this might be useful
 			} else {
 				boundaryEvent.Invoke ();
 			}
+
+			return this;
 		}
 
-		public void ClearBoundaryCallbacks() {
+		public UBulletActor ClearBoundaryCallbacks() {
 			boundaryEvent = null;
+
+			return this;
 		}
 
-		public void AddRecycleCallback(UnityAction callback) {
+		public UBulletActor AddRecycleCallback(UnityAction callback) {
 			if (recycleEvent == null) {
 				recycleEvent = new UnityEvent ();
 			}
 			recycleEvent.AddListener (callback);
+
+			return this;
 		}
 
-		public void InvokeRecycleCallbacks() {
+		public UBulletActor InvokeRecycleCallbacks() {
 			if (recycleEvent == null) {
 				// DO NOTHING, and don't warn anything, as this might be useful
 			} else {
 				recycleEvent.Invoke ();
 			}
+
+			return this;
 		}
 
-		public void ClearRecycleCallbacks() {
+		public UBulletActor ClearRecycleCallbacks() {
 			recycleEvent = null;
+
+			return this;
 		}
 
-		public void ClearAllCallbacks() {
+		public UBulletActor ClearAllCallbacks() {
 			ClearDefaultCallbacks ();
 			ClearCollisionCallbacks ();
 			ClearBoundaryCallbacks ();
 			ClearRecycleCallbacks ();
+
+			return this;
 		}
 
 
-		public void AddDOTweenSequence(Sequence seq) {
+		public UBulletActor AddDOTweenSequence(Sequence seq) {
 			if (doTweenSequences == null) {
 				doTweenSequences = new List<Sequence> ();
 			}
 			doTweenSequences.Add (seq);
+
+			return this;
 		}
 		public Sequence GetDOTweenSequenceAt(int index) {
 			if (doTweenSequences == null) {
@@ -165,7 +193,7 @@ namespace UDEngine.Components.Actor {
 				return doTweenSequences [index];
 			}
 		}
-		public void KillDOTweenSequenceAt(int index) {
+		public UBulletActor KillDOTweenSequenceAt(int index) {
 			if (doTweenSequences == null) {
 				doTweenSequences = new List<Sequence> ();
 			}
@@ -175,22 +203,28 @@ namespace UDEngine.Components.Actor {
 				doTweenSequences [index].Kill ();
 				doTweenSequences.RemoveAt (index); // Removing seq reference. SLOW!!! But this is RARE, so it should be okay
 			}
+
+			return this;
 		}
-		public void KillAllDOTweenSequences() {
+		public UBulletActor KillAllDOTweenSequences() {
 			if (doTweenSequences != null) { // not null, else do NOTHING
 				foreach (Sequence seq in doTweenSequences) {
 					seq.Kill ();
 				}
 			}
 			doTweenSequences = new List<Sequence> (); // Cleanup
+
+			return this;
 		}
 
 
-		public void AddLeanTweenSequenceID(int seqID) {
+		public UBulletActor AddLeanTweenSequenceID(int seqID) {
 			if (leanTweenSequences == null) {
 				leanTweenSequences = new List<int> ();
 			}
 			leanTweenSequences.Add (seqID);
+
+			return this;
 		}
 		public int GetLeanTweenSequenceIDAt(int index) {
 			if (leanTweenSequences == null) {
@@ -201,7 +235,7 @@ namespace UDEngine.Components.Actor {
 			}
 			return leanTweenSequences [index];
 		}
-		public void KillLeanTweenSequenceAt(int index) {
+		public UBulletActor KillLeanTweenSequenceAt(int index) {
 			if (leanTweenSequences == null) {
 				leanTweenSequences = new List<int> ();
 			}
@@ -211,8 +245,10 @@ namespace UDEngine.Components.Actor {
 				LeanTween.cancel(leanTweenSequences [index]);
 				leanTweenSequences.RemoveAt (index); // Removing seq reference. SLOW!!! But this is RARE, so it should be okay
 			}
+
+			return this;
 		}
-		public void KillAllLeanTweenSequences() {
+		public UBulletActor KillAllLeanTweenSequences() {
 			if (leanTweenSequences != null) { // not null, else do NOTHING
 				foreach (int seqID in leanTweenSequences) {
 					LeanTween.cancel (seqID);
@@ -221,14 +257,18 @@ namespace UDEngine.Components.Actor {
 
 			// BUGFIX: resetting leanTweenSequences after this;
 			leanTweenSequences = new List<int>();
+
+			return this;
 		}
 
 
-		public void AddLeanTweenID(int tweenID) {
+		public UBulletActor AddLeanTweenID(int tweenID) {
 			if (leanTweenIDs == null) {
 				leanTweenIDs = new List<int> ();
 			}
 			leanTweenIDs.Add (tweenID);
+
+			return this;
 		}
 		public int GetLeanTweenIDAt(int index) {
 			if (leanTweenIDs == null) {
@@ -239,7 +279,7 @@ namespace UDEngine.Components.Actor {
 			}
 			return leanTweenIDs [index];
 		}
-		public void KillLeanTweenAt(int index) {
+		public UBulletActor KillLeanTweenAt(int index) {
 			if (leanTweenIDs == null) {
 				leanTweenIDs = new List<int> ();
 			}
@@ -249,8 +289,10 @@ namespace UDEngine.Components.Actor {
 				LeanTween.cancel(leanTweenIDs [index]);
 				leanTweenIDs.RemoveAt (index); // Removing tween reference. SLOW!!! But this is RARE, so it should be okay
 			}
+
+			return this;
 		}
-		public void KillAllLeanTweens() {
+		public UBulletActor KillAllLeanTweens() {
 			if (leanTweenIDs != null) { // not null, else do NOTHING
 				foreach (int tweenID in leanTweenIDs) {
 					while (LeanTween.isTweening (tweenID)) { // BUGFIX: Safety check... THIS IS NOT WORKING!!!
@@ -261,6 +303,8 @@ namespace UDEngine.Components.Actor {
 
 			// BUGFIX: resetting leanTweenIDs after this;
 			leanTweenIDs = new List<int>();
+
+			return this;
 		}
 		#endregion
 	}

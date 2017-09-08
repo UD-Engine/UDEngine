@@ -64,12 +64,14 @@ namespace UDEngine.Components.Bullet {
 			}
 			return poolID;
 		}
-		public void SetPoolID(int id) {
+		public UBulletObject SetPoolID(int id) {
 			if (id < 0) {
 				poolID = -1;
 			} else {
 				poolID = id;
 			}
+
+			return this;
 		}
 
 		// As UBulletActor is MONO-ized, the old problem should no longer exist anymore
@@ -93,54 +95,64 @@ namespace UDEngine.Components.Bullet {
 		public Transform GetChildTransform() {
 			return this.childTrans;
 		}
-		public void AddChild(UBulletObject obj) {
+		public UBulletObject AddChild(UBulletObject obj) {
 			if (this.children == null) {
 				this.children = new List<UBulletObject> ();
 			}
 			this.children.Add (obj);
 			obj.SetParent (this);
 			obj.GetTransform ().SetParent (this.childTrans);
+
+			return this;
 		}
-		public void RemoveChild(UBulletObject obj, bool shouldReturnToPool = true) {
+		public UBulletObject RemoveChild(UBulletObject obj, bool shouldReturnToPool = true) {
 			this.children.Remove (obj); // SLOW, but should be okay...
 			obj.SetParent(null);
 			if (shouldReturnToPool) {
 				// Setting its parent transform back to the pool itself
 				obj.GetTransform ().SetParent (obj.GetPoolManager ().GetPoolTransform ());
 			}
+
+			return this;
 		}
 
 
 		public Object GetProp(string name) {
 			return this.props [name];
 		}
-		public void SetProp(string name, Object value) {
+		public UBulletObject SetProp(string name, Object value) {
 			this.props.Add (name, value);
+
+			return this;
 		}
 
 		public UBulletPoolManager GetPoolManager() {
 			return this.poolManager;
 		}
-		public void SetPoolManager(UBulletPoolManager manager) {
+		public UBulletObject SetPoolManager(UBulletPoolManager manager) {
 			this.poolManager = manager;
+
+			return this;
 		}
 
 		public UBulletObject GetParent() {
 			return this.parent;
 		}
 
-		public void SetParent(UBulletObject obj) {
+		public UBulletObject SetParent(UBulletObject obj) {
 			this.parent = obj;
+
+			return this;
 		}
 
-
+		// Keeping this as void, as NO CHAINING allowed here
 		public void Recycle(bool shouldRecycleChildren = false, bool shouldSplitChildrenOnRecycle = false) {
 			this.actor.InvokeRecycleCallbacks (); // Recycle callback is called HERE, NOT in the poolManager one...
 			this.poolManager.RecycleBullet (this, shouldRecycleChildren, shouldSplitChildrenOnRecycle);
 		}
 
 
-		public void KillAllDOTweenAndDOTweenSequence(bool isRecursive = true) {
+		public UBulletObject KillAllDOTweenAndDOTweenSequence(bool isRecursive = true) {
 			this.trans.DOKill ();
 			this.actor.KillAllDOTweenSequences ();
 
@@ -149,9 +161,11 @@ namespace UDEngine.Components.Bullet {
 					childObject.KillAllDOTweenAndDOTweenSequence ();
 				}
 			}
+
+			return this;
 		}
 
-		public void KillAllLeanTweenAndLeanTweenSequence(bool isRecursive = true) {
+		public UBulletObject KillAllLeanTweenAndLeanTweenSequence(bool isRecursive = true) {
 			this.actor.KillAllLeanTweens ();
 			this.actor.KillAllLeanTweenSequences ();
 
@@ -160,6 +174,8 @@ namespace UDEngine.Components.Bullet {
 					childObject.KillAllLeanTweenAndLeanTweenSequence ();
 				}
 			}
+
+			return this;
 		}
 		#endregion
 	}
