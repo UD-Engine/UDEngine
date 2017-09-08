@@ -72,18 +72,18 @@ public class TestShooterBasic : MonoBehaviour {
 		txt.text = "Bullet: " + monitor.GetBulletColliders ().Count;
 	}
 
-	void ConfigureShooter(UShooter shooter, bool isEven) {
+	void ConfigureShooter(UShooter shooter, bool isEven, bool shouldChangeColor = false) {
 		if (isEven) {
 			shooter
 				.AddStage (new UShootStageSameInterval (5000, 0.001f, 0, (UBulletObject bulletObject) => {
-					/*
-					bulletObject.GetActor ().AddDefaultCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.white;
-					});
-					bulletObject.GetActor ().AddCollisionCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.red;
-					});
-					*/
+					if (shouldChangeColor) {
+						bulletObject.GetActor ().AddDefaultCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.white;
+						});
+						bulletObject.GetActor ().AddCollisionCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.red;
+						});
+					}
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
@@ -93,14 +93,14 @@ public class TestShooterBasic : MonoBehaviour {
 				}))
 				.AddStage (new UShootStageWait (1f))
 				.AddStage (new UShootStageSameInterval (5000, 0.001f, 1, (UBulletObject bulletObject) => {
-					/*
-					bulletObject.GetActor ().AddDefaultCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.white;
-					});
-					bulletObject.GetActor ().AddCollisionCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.red;
-					});
-					*/
+					if (shouldChangeColor) {
+						bulletObject.GetActor ().AddDefaultCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.white;
+						});
+						bulletObject.GetActor ().AddCollisionCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.red;
+						});
+					}
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
@@ -115,14 +115,14 @@ public class TestShooterBasic : MonoBehaviour {
 		} else {
 			shooter
 				.AddStage (new UShootStageSameInterval (10000, 0.001f, 1, (UBulletObject bulletObject) => {
-					/*
-					bulletObject.GetActor ().AddDefaultCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.white;
-					});
-					bulletObject.GetActor ().AddCollisionCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.red;
-					});
-					*/
+					if (shouldChangeColor) {
+						bulletObject.GetActor ().AddDefaultCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.white;
+						});
+						bulletObject.GetActor ().AddCollisionCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.red;
+						});
+					}
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
@@ -132,14 +132,14 @@ public class TestShooterBasic : MonoBehaviour {
 				}))
 				.AddStage (new UShootStageWait (1f))
 				.AddStage (new UShootStageSameInterval (10000, 0.001f, 0, (UBulletObject bulletObject) => {
-					/*
-					bulletObject.GetActor ().AddDefaultCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.white;
-					});
-					bulletObject.GetActor ().AddCollisionCallback (() => {
-						bulletObject.GetSpriteRenderer ().color = Color.red;
-					});
-					*/
+					if (shouldChangeColor) {
+						bulletObject.GetActor ().AddDefaultCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.white;
+						});
+						bulletObject.GetActor ().AddCollisionCallback (() => {
+							bulletObject.GetSpriteRenderer ().color = Color.red;
+						});
+					}
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});

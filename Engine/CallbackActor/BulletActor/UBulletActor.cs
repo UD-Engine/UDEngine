@@ -49,7 +49,7 @@ namespace UDEngine.Components.Actor {
 		public UnityEvent recycleEvent = null; // Event triggered on recycling, it will be called in UBulletObject.Recycle()
 
 		// This is used to track all active tween sequences, so that they could be cleanly killed
-		public List<Sequence> tweenSequences; // This should be lazily initialized.
+		public List<Sequence> doTweenSequences; // This should be lazily initialized.
 
 		public List<int> leanTweenSequences; // Testing for LeanTween
 		public List<int> leanTweenIDs; // Testing for LeanTween
@@ -148,41 +148,41 @@ namespace UDEngine.Components.Actor {
 		}
 
 
-		public void AddTweenSequence(Sequence seq) {
-			if (tweenSequences == null) {
-				tweenSequences = new List<Sequence> ();
+		public void AddDOTweenSequence(Sequence seq) {
+			if (doTweenSequences == null) {
+				doTweenSequences = new List<Sequence> ();
 			}
-			tweenSequences.Add (seq);
+			doTweenSequences.Add (seq);
 		}
-		public Sequence GetTweenSequenceAt(int index) {
-			if (tweenSequences == null) {
-				tweenSequences = new List<Sequence> ();
+		public Sequence GetDOTweenSequenceAt(int index) {
+			if (doTweenSequences == null) {
+				doTweenSequences = new List<Sequence> ();
 			}
-			if (index >= tweenSequences.Count || index < 0) {
+			if (index >= doTweenSequences.Count || index < 0) {
 				UDebug.Error ("cannot find tween sequence of the given index");
 				return null;
 			} else {
-				return tweenSequences [index];
+				return doTweenSequences [index];
 			}
 		}
-		public void KillTweenSequenceAt(int index) {
-			if (tweenSequences == null) {
-				tweenSequences = new List<Sequence> ();
+		public void KillDOTweenSequenceAt(int index) {
+			if (doTweenSequences == null) {
+				doTweenSequences = new List<Sequence> ();
 			}
-			if (index >= tweenSequences.Count || index < 0) {
+			if (index >= doTweenSequences.Count || index < 0) {
 				UDebug.Error ("cannot find tween sequence of the given index, kill fails");
 			} else {
-				tweenSequences [index].Kill ();
-				tweenSequences.RemoveAt (index); // Removing seq reference. SLOW!!! But this is RARE, so it should be okay
+				doTweenSequences [index].Kill ();
+				doTweenSequences.RemoveAt (index); // Removing seq reference. SLOW!!! But this is RARE, so it should be okay
 			}
 		}
-		public void KillAllTweenSequences() {
-			if (tweenSequences != null) { // not null, else do NOTHING
-				foreach (Sequence seq in tweenSequences) {
+		public void KillAllDOTweenSequences() {
+			if (doTweenSequences != null) { // not null, else do NOTHING
+				foreach (Sequence seq in doTweenSequences) {
 					seq.Kill ();
 				}
 			}
-			tweenSequences = new List<Sequence> (); // Cleanup
+			doTweenSequences = new List<Sequence> (); // Cleanup
 		}
 
 

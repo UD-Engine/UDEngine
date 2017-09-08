@@ -140,13 +140,13 @@ namespace UDEngine.Components.Bullet {
 		}
 
 
-		public void KillAllTweenAndTweenSequence(bool isRecursive = true) {
+		public void KillAllDOTweenAndDOTweenSequence(bool isRecursive = true) {
 			this.trans.DOKill ();
-			this.actor.KillAllTweenSequences ();
+			this.actor.KillAllDOTweenSequences ();
 
 			if (isRecursive) {
 				foreach (UBulletObject childObject in this.children) {
-					childObject.KillAllTweenAndTweenSequence ();
+					childObject.KillAllDOTweenAndDOTweenSequence ();
 				}
 			}
 		}
