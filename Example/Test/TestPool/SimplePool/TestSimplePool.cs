@@ -6,11 +6,11 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 using UDEngine;
-using UDEngine.Components;
-using UDEngine.Components.Bullet;
-using UDEngine.Components.Collision;
-using UDEngine.Components.Actor;
-using UDEngine.Components.Pool;
+using UDEngine.Core;
+using UDEngine.Core.Bullet;
+using UDEngine.Core.Collision;
+using UDEngine.Core.Actor;
+using UDEngine.Core.Pool;
 using UDEngine.Internal;
 using UDEngine.Enum;
 using UDEngine.Interface;

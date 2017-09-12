@@ -5,7 +5,7 @@ using UnityEngine;
 using UDEngine;
 using UDEngine.Interface;
 
-namespace UDEngine.Components {
+namespace UDEngine.Core {
 	/// <summary>
 	/// Execute MonoBehaviour like classes (which may not be allowed to be MonoBehaviour due to "new" instantiation)
 	/// </summary>

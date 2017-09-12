@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UDEngine;
-using UDEngine.Components;
-using UDEngine.Components.Collision;
-using UDEngine.Components.Actor;
-using UDEngine.Components.Pool;
+using UDEngine.Core;
+using UDEngine.Core.Collision;
+using UDEngine.Core.Actor;
+using UDEngine.Core.Pool;
 using UDEngine.Internal;
 using UDEngine.Interface;
 
 using DG.Tweening;
 
-namespace UDEngine.Components.Bullet {
+namespace UDEngine.Core.Bullet {
 	public class UBulletObject : MonoBehaviour {
 
 		#region UNITYFUNC

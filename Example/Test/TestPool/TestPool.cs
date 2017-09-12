@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UDEngine.Internal;
-using UDEngine.Components;
-using UDEngine.Components.Collision;
-using UDEngine.Components.Bullet;
-using UDEngine.Components.Pool;
+using UDEngine.Core;
+using UDEngine.Core.Collision;
+using UDEngine.Core.Bullet;
+using UDEngine.Core.Pool;
 using DG.Tweening;
 
 public class TestPool : MonoBehaviour {

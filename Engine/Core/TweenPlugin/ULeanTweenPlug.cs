@@ -4,7 +4,7 @@ using UnityEngine;
 
 using UDEngine.Internal;
 
-namespace UDEngine.Components.Tween {
+namespace UDEngine.Core.Tween {
 	[System.Serializable]
 	public class ULeanTweenPlug {
 		#region CONSTRUCTOR

@@ -6,9 +6,9 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 using UDEngine;
-using UDEngine.Components;
-using UDEngine.Components.Collision;
-using UDEngine.Components.Actor;
+using UDEngine.Core;
+using UDEngine.Core.Collision;
+using UDEngine.Core.Actor;
 using UDEngine.Internal;
 using UDEngine.Enum;
 using UDEngine.Interface;

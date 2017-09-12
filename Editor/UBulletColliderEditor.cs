@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEditor;
 using UDEngine;
-using UDEngine.Components;
-using UDEngine.Components.Actor;
-using UDEngine.Components.Collision;
-using UDEngine.Components.Bullet;
+using UDEngine.Core;
+using UDEngine.Core.Actor;
+using UDEngine.Core.Collision;
+using UDEngine.Core.Bullet;
 
 [CustomEditor(typeof(UBulletCollider))]
 public class UBulletColliderEditor : Editor {

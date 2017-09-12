@@ -5,12 +5,12 @@ using UnityEngine;
 using UnityEngine.Events;
 
 using UDEngine;
-using UDEngine.Components;
-using UDEngine.Components.Actor;
-using UDEngine.Components.Bullet;
-using UDEngine.Components.Collision;
-using UDEngine.Components.Pool;
-using UDEngine.Components.Shooter;
+using UDEngine.Core;
+using UDEngine.Core.Actor;
+using UDEngine.Core.Bullet;
+using UDEngine.Core.Collision;
+using UDEngine.Core.Pool;
+using UDEngine.Core.Shooter;
 using UDEngine.Interface;
 using UDEngine.Internal;
 

@@ -5,9 +5,9 @@ using UnityEditor;
 
 using UDEngine.Interface;
 using UDEngine.Internal;
-using UDEngine.Components;
-using UDEngine.Components.Actor;
-using UDEngine.Components.Collision;
+using UDEngine.Core;
+using UDEngine.Core.Actor;
+using UDEngine.Core.Collision;
 
 [CustomEditor(typeof(UCollisionMonitor))]
 public class UCollisionMonitorEditor : Editor {

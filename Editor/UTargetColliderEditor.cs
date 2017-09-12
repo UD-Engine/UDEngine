@@ -2,8 +2,8 @@
 using System.Collections;
 using UnityEditor;
 using UDEngine;
-using UDEngine.Components;
-using UDEngine.Components.Collision;
+using UDEngine.Core;
+using UDEngine.Core.Collision;
 
 [CustomEditor(typeof(UTargetCollider))]
 public class UTargetColliderEditor : Editor {

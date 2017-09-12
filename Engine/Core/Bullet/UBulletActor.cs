@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -6,17 +6,17 @@ using UnityEngine.Events;
 
 using UDEngine;
 using UDEngine.Internal;
-using UDEngine.Components;
-using UDEngine.Components.Actor;
-using UDEngine.Components.Bullet;
-using UDEngine.Components.Collision;
-using UDEngine.Components.Tween;
+using UDEngine.Core;
+using UDEngine.Core.Actor;
+using UDEngine.Core.Bullet;
+using UDEngine.Core.Collision;
+using UDEngine.Core.Tween;
 using UDEngine.Interface;
 using UDEngine.Enum;
 
 using DG.Tweening;
 
-namespace UDEngine.Components.Actor {
+namespace UDEngine.Core.Actor {
 	/// <summary>
 	/// Where all the callbacks live
 	/// </summary>

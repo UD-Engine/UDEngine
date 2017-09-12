@@ -6,7 +6,7 @@ using UDEngine.Internal;
 
 using DG.Tweening;
 
-namespace UDEngine.Components.Tween {
+namespace UDEngine.Core.Tween {
 	[System.Serializable]
 	public class UDOTweenPlug {
 		#region CONSTRUCTOR
