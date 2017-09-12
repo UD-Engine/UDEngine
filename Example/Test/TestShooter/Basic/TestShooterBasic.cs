@@ -18,6 +18,8 @@ using UDEngine.Internal;
 using UDEngine.Enum;
 using UDEngine.Interface;
 
+using UDEngine.Commons.ShootStage;
+
 using DG.Tweening;
 using KSM.Tweening;
 
@@ -87,7 +89,7 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 //					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
 //					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
@@ -104,7 +106,7 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 //					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
 //					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
@@ -126,7 +128,7 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 //					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
 //					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
@@ -143,7 +145,7 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 //					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
 //					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))

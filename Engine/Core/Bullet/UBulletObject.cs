@@ -54,7 +54,7 @@ namespace UDEngine.Components.Bullet {
 		public UBulletPoolManager poolManager;
 
 		// This props is used for adding cacheable props by the user
-		public Dictionary<string, Object> props;
+		public Dictionary<string, object> props;
 		#endregion
 
 		#region METHOD
@@ -117,10 +117,10 @@ namespace UDEngine.Components.Bullet {
 		}
 
 
-		public Object GetProp(string name) {
+		public object GetProp(string name) {
 			return this.props [name];
 		}
-		public UBulletObject SetProp(string name, Object value) {
+		public UBulletObject SetProp(string name, object value) {
 			this.props.Add (name, value);
 
 			return this;
@@ -153,8 +153,11 @@ namespace UDEngine.Components.Bullet {
 
 
 		public UBulletObject KillAllDOTweenAndDOTweenSequence(bool isRecursive = true) {
+			this.actor.doTweens.KillAll ();
+			/*
 			this.actor.KillAllDOTweenTweeners ();
 			this.actor.KillAllDOTweenSequences ();
+			*/
 
 			if (isRecursive) {
 				foreach (UBulletObject childObject in this.children) {
@@ -166,8 +169,11 @@ namespace UDEngine.Components.Bullet {
 		}
 
 		public UBulletObject KillAllLeanTweenAndLeanTweenSequence(bool isRecursive = true) {
+			this.actor.leanTweens.KillAll ();
+			/*
 			this.actor.KillAllLeanTweens ();
 			this.actor.KillAllLeanTweenSequences ();
+			*/
 
 			if (isRecursive) {
 				foreach (UBulletObject childObject in this.children) {

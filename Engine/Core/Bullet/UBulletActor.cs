@@ -10,6 +10,7 @@ using UDEngine.Components;
 using UDEngine.Components.Actor;
 using UDEngine.Components.Bullet;
 using UDEngine.Components.Collision;
+using UDEngine.Components.Tween;
 using UDEngine.Interface;
 using UDEngine.Enum;
 
@@ -26,6 +27,28 @@ namespace UDEngine.Components.Actor {
 		}
 
 		#region UNITYFUNC
+		void Awake() {
+			if (doTweens == null) {
+				doTweens = new UDOTweenPlug ();
+			}
+			if (leanTweens == null) {
+				leanTweens = new ULeanTweenPlug ();
+			}
+
+			if (collisionEvent == null) {
+				collisionEvent = new UnityEvent ();
+			}
+			if (defaultEvent == null) {
+				defaultEvent = new UnityEvent ();
+			}
+			if (boundaryEvent == null) {
+				boundaryEvent = new UnityEvent ();
+			}
+			if (recycleEvent == null) {
+				recycleEvent = new UnityEvent ();
+			}
+		}
+
 		void Start() {
 			if (this.bulletObject == null) {
 				UDebug.Error ("bullet object not set");
@@ -48,6 +71,7 @@ namespace UDEngine.Components.Actor {
 		public UnityEvent boundaryEvent = null; // Event that would be triggered when meeting with the monitor boundary
 		public UnityEvent recycleEvent = null; // Event triggered on recycling, it will be called in UBulletObject.Recycle()
 
+		/*
 		// This is used to track all active tween sequences, so that they could be cleanly killed
 		public List<Tweener> doTweenTweeners;
 		public List<Sequence> doTweenSequences; // This should be lazily initialized.
@@ -55,6 +79,10 @@ namespace UDEngine.Components.Actor {
 		public List<int> leanTweenSequences; // Testing for LeanTween
 		public List<int> leanTweenIDs; // Testing for LeanTween
 		// HIGHLIGHT: after consideration, I decide NOT to move to LinkedList, as killing all the actual most common action
+		*/
+
+		public UDOTweenPlug doTweens;
+		public ULeanTweenPlug leanTweens;
 		#endregion
 
 		#region METHOD
@@ -174,6 +202,7 @@ namespace UDEngine.Components.Actor {
 			return this;
 		}
 
+		/*
 		public UBulletActor AddDOTweenTweener(Tweener tweener) {
 			if (doTweenTweeners == null) {
 				doTweenTweeners = new List<Tweener> ();
@@ -352,6 +381,7 @@ namespace UDEngine.Components.Actor {
 
 			return this;
 		}
+		*/
 		#endregion
 	}
 }
