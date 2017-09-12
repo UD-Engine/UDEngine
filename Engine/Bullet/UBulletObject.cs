@@ -153,7 +153,7 @@ namespace UDEngine.Components.Bullet {
 
 
 		public UBulletObject KillAllDOTweenAndDOTweenSequence(bool isRecursive = true) {
-			this.trans.DOKill ();
+			this.actor.KillAllDOTweenTweeners ();
 			this.actor.KillAllDOTweenSequences ();
 
 			if (isRecursive) {

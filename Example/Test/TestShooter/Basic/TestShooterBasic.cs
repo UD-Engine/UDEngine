@@ -42,7 +42,7 @@ public class TestShooterBasic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		LeanTween.init (10000);
+		//LeanTween.init (10000);
 
 
 		var mousePos = Input.mousePosition;
@@ -75,7 +75,7 @@ public class TestShooterBasic : MonoBehaviour {
 	void ConfigureShooter(UShooter shooter, bool isEven, bool shouldChangeColor = false) {
 		if (isEven) {
 			shooter
-				.AddStage (new UShootStageSameInterval (5000, 0.001f, 0, (UBulletObject bulletObject) => {
+				.AddStage (new UShootStageSameInterval (5000, 0.0001f, 0, (UBulletObject bulletObject) => {
 					if (shouldChangeColor) {
 						bulletObject.GetActor ().AddDefaultCallback (() => {
 							bulletObject.GetSpriteRenderer ().color = Color.white;
@@ -87,12 +87,12 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					//bulletObject.GetTransform ().DOMoveUp (1.5f);
-					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
-					bulletObject.GetActor().AddLeanTweenID(moveID);
+					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+//					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+//					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
 				.AddStage (new UShootStageWait (1f))
-				.AddStage (new UShootStageSameInterval (5000, 0.001f, 1, (UBulletObject bulletObject) => {
+				.AddStage (new UShootStageSameInterval (5000, 0.0001f, 1, (UBulletObject bulletObject) => {
 					if (shouldChangeColor) {
 						bulletObject.GetActor ().AddDefaultCallback (() => {
 							bulletObject.GetSpriteRenderer ().color = Color.white;
@@ -104,9 +104,9 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					//bulletObject.GetTransform ().DOMoveUp (1.5f);
-					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
-					bulletObject.GetActor().AddLeanTweenID(moveID);
+					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+//					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+//					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
 				.SetLoopType (EShooterLoopType.BOUNCE);
 
@@ -114,7 +114,7 @@ public class TestShooterBasic : MonoBehaviour {
 			shooter.GetTransform ().DORotateForever (1f);
 		} else {
 			shooter
-				.AddStage (new UShootStageSameInterval (10000, 0.001f, 1, (UBulletObject bulletObject) => {
+				.AddStage (new UShootStageSameInterval (10000, 0.0001f, 1, (UBulletObject bulletObject) => {
 					if (shouldChangeColor) {
 						bulletObject.GetActor ().AddDefaultCallback (() => {
 							bulletObject.GetSpriteRenderer ().color = Color.white;
@@ -126,12 +126,12 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					//bulletObject.GetTransform ().DOMoveUp (1.5f);
-					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
-					bulletObject.GetActor().AddLeanTweenID(moveID);
+					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+//					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+//					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
 				.AddStage (new UShootStageWait (1f))
-				.AddStage (new UShootStageSameInterval (10000, 0.001f, 0, (UBulletObject bulletObject) => {
+				.AddStage (new UShootStageSameInterval (10000, 0.0001f, 0, (UBulletObject bulletObject) => {
 					if (shouldChangeColor) {
 						bulletObject.GetActor ().AddDefaultCallback (() => {
 							bulletObject.GetSpriteRenderer ().color = Color.white;
@@ -143,9 +143,9 @@ public class TestShooterBasic : MonoBehaviour {
 					bulletObject.GetActor ().AddBoundaryCallback (() => {
 						bulletObject.Recycle ();
 					});
-					//bulletObject.GetTransform ().DOMoveUp (1.5f);
-					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
-					bulletObject.GetActor().AddLeanTweenID(moveID);
+					bulletObject.GetActor().AddDOTweenTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
+//					int moveID = bulletObject.GetTransform().LeanMoveUp(1.5f).setEase(LeanTweenType.easeOutQuad).id;
+//					bulletObject.GetActor().AddLeanTweenID(moveID);
 				}))
 				.SetLoopType (EShooterLoopType.BOUNCE);
 

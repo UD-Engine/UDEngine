@@ -49,6 +49,7 @@ namespace UDEngine.Components.Actor {
 		public UnityEvent recycleEvent = null; // Event triggered on recycling, it will be called in UBulletObject.Recycle()
 
 		// This is used to track all active tween sequences, so that they could be cleanly killed
+		public List<Tweener> doTweenTweeners;
 		public List<Sequence> doTweenSequences; // This should be lazily initialized.
 
 		public List<int> leanTweenSequences; // Testing for LeanTween
@@ -173,6 +174,51 @@ namespace UDEngine.Components.Actor {
 			return this;
 		}
 
+		public UBulletActor AddDOTweenTweener(Tweener tweener) {
+			if (doTweenTweeners == null) {
+				doTweenTweeners = new List<Tweener> ();
+			}
+			doTweenTweeners.Add (tweener);
+
+			return this;
+		}
+
+		public Tweener GetDOTweenTweenerAt(int index) {
+			if (doTweenTweeners == null) {
+				doTweenTweeners = new List<Tweener> ();
+			}
+			if (index >= doTweenTweeners.Count || index < 0) {
+				UDebug.Error ("cannot find DOTween Tweener of the given index");
+				return null;
+			} else {
+				return doTweenTweeners [index];
+			}
+		}
+
+		public UBulletActor KillDOTweenTweenerAt(int index) {
+			if (doTweenTweeners == null) {
+				doTweenTweeners = new List<Tweener> ();
+			}
+			if (index >= doTweenTweeners.Count || index < 0) {
+				UDebug.Error ("cannot find DOTween Tweener of the given index, kill fails");
+			} else {
+				doTweenTweeners [index].Kill ();
+				doTweenTweeners.RemoveAt (index); // Removing tweener reference. SLOW!!! But this is RARE, so it should be okay
+			}
+			return this;
+		}
+
+		public UBulletActor KillAllDOTweenTweeners() {
+			if (doTweenTweeners != null) { // not null, else do NOTHING
+				foreach (Tweener tweener in doTweenTweeners) {
+					tweener.Kill ();
+				}
+			}
+			doTweenTweeners = new List<Tweener> (); // Cleanup
+
+			return this;
+		}
+
 
 		public UBulletActor AddDOTweenSequence(Sequence seq) {
 			if (doTweenSequences == null) {
@@ -187,7 +233,7 @@ namespace UDEngine.Components.Actor {
 				doTweenSequences = new List<Sequence> ();
 			}
 			if (index >= doTweenSequences.Count || index < 0) {
-				UDebug.Error ("cannot find tween sequence of the given index");
+				UDebug.Error ("cannot find DOTween Sequence of the given index");
 				return null;
 			} else {
 				return doTweenSequences [index];
@@ -198,7 +244,7 @@ namespace UDEngine.Components.Actor {
 				doTweenSequences = new List<Sequence> ();
 			}
 			if (index >= doTweenSequences.Count || index < 0) {
-				UDebug.Error ("cannot find tween sequence of the given index, kill fails");
+				UDebug.Error ("cannot find DOTween Sequence of the given index, kill fails");
 			} else {
 				doTweenSequences [index].Kill ();
 				doTweenSequences.RemoveAt (index); // Removing seq reference. SLOW!!! But this is RARE, so it should be okay
