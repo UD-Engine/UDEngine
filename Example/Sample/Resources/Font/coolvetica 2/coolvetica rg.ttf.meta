@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3c1737013f14348949ad596b5ae66437
+timeCreated: 1505223960
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Coolvetica
+  fontNames:
+  - Coolvetica
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

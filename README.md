@@ -11,3 +11,7 @@ However, this early version could __STILL__ be useful. Using the wonderful DOTwe
 The engine will use one or two awesome and useful plugins, which are NOT written by me. You can find the in the `Plugins/` folder. They will all be licenses as according to their own READMEs.  
 
 I truly welcome people to come and test the engine, and hopefully contribute to the development.  
+
+## Showcase and Update  
+### Sept. 12
+![1.gif][/Showcase/1.gif]
