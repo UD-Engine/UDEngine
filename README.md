@@ -14,4 +14,4 @@ I truly welcome people to come and test the engine, and hopefully contribute to 
 
 ## Showcase and Update  
 ### Sept. 12
-![1.gif][/Showcase/1.gif]
+![1.gif](/Showcase/1.gif)
