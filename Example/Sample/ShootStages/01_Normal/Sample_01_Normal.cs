@@ -14,6 +14,7 @@ using UDEngine.Commons.ShootStage;
 
 using UDEngine.Plugin.Patterner;
 using UDEngine.Plugin.DOTweenExtension;
+using UDEngine.Plugin.ShootDust;
 
 public class Sample_01_Normal : MonoBehaviour {
 
@@ -54,6 +55,12 @@ public class Sample_01_Normal : MonoBehaviour {
 		}
 
 		foreach (UShooter shooter in shooters) {
+			USimpleFadeDustObject dustObject = USimpleFadeDust.Create (shooter.trans, shootSprites [0]);
+			dustObject.trans.localScale = new Vector3 (0.4f, 0.4f, 0.4f);
+			dustObject.spriteRenderer.sortingOrder = 3;
+			dustObject.Fade (0.5f);
+
+			/*
 			Transform spriteTrans = new GameObject ("ShooterSprite").transform;
 
 			spriteTrans.position = shooter.GetTransform ().position;
@@ -66,6 +73,7 @@ public class Sample_01_Normal : MonoBehaviour {
 			spriteRenderer.sprite = shootSprites [0];
 			spriteRenderer.sortingOrder = 3;
 			Tweener fadeTween = spriteRenderer.DOFade (0f, 0.5f);
+			*/
 
 			shooter.SetBulletPoolManager (poolManager);
 
@@ -78,11 +86,14 @@ public class Sample_01_Normal : MonoBehaviour {
 					// Set bullet to move forward on activation
 					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 
+					dustObject.Fade(0.5f);
+					/*
 					fadeTween.Kill();
 					Color lastColor = spriteRenderer.color;
 					lastColor.a = 1f;
 					spriteRenderer.color = lastColor;
 					fadeTween = spriteRenderer.DOFade (0f, 0.5f);
+					*/
 				}));
 
 			// Trigger shooting
@@ -90,6 +101,12 @@ public class Sample_01_Normal : MonoBehaviour {
 		}
 
 		foreach (UShooter shooter in secondShooters) {
+			USimpleFadeDustObject dustObject = USimpleFadeDust.Create (shooter.trans, shootSprites [1]);
+			dustObject.trans.localScale = new Vector3 (0.4f, 0.4f, 0.4f);
+			dustObject.spriteRenderer.sortingOrder = 3;
+			dustObject.Fade (0.5f);
+
+			/*
 			Transform spriteTrans = new GameObject ("ShooterSprite").transform;
 
 			spriteTrans.position = shooter.GetTransform ().position;
@@ -102,6 +119,7 @@ public class Sample_01_Normal : MonoBehaviour {
 			spriteRenderer.sprite = shootSprites [1];
 			spriteRenderer.sortingOrder = 3;
 			Tweener fadeTween = spriteRenderer.DOFade (0f, 0.5f);
+			*/
 
 
 			shooter.SetBulletPoolManager (poolManager);
@@ -115,11 +133,15 @@ public class Sample_01_Normal : MonoBehaviour {
 					// Set bullet to move forward on activation
 					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 
+					dustObject.Fade(0.5f);
+
+					/*
 					fadeTween.Kill();
 					Color lastColor = spriteRenderer.color;
 					lastColor.a = 1f;
 					spriteRenderer.color = lastColor;
 					fadeTween = spriteRenderer.DOFade (0f, 0.5f);
+					*/
 				}));
 
 			// Trigger shooting

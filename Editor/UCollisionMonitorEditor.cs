@@ -15,6 +15,8 @@ public class UCollisionMonitorEditor : Editor {
 		EditorUtility.SetDirty (target); //ensures repaint on value change
 		UCollisionMonitor uCollisionMonitor = (UCollisionMonitor) target;
 
+		uCollisionMonitor.shouldUpdate = EditorGUILayout.Toggle ("Enabled", uCollisionMonitor.shouldUpdate);
+
 		uCollisionMonitor.boundXMin = EditorGUILayout.FloatField ("X Min", uCollisionMonitor.boundXMin);
 		uCollisionMonitor.boundYMin = EditorGUILayout.FloatField ("Y Min", uCollisionMonitor.boundYMin);
 		uCollisionMonitor.boundWidth = EditorGUILayout.FloatField ("Width", uCollisionMonitor.boundWidth);

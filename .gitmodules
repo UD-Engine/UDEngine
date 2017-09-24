@@ -7,3 +7,6 @@
 [submodule "Engine/Shooter"]
 	path = Engine/Core/Shooter
 	url = git@github.com:UD-Engine/Shooter
+[submodule "Engine/Plugin"]
+	path = Engine/Plugin
+	url = git@github.com:UD-Engine/Plugin.git
