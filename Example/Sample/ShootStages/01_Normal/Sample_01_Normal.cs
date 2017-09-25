@@ -60,21 +60,6 @@ public class Sample_01_Normal : MonoBehaviour {
 			dustObject.spriteRenderer.sortingOrder = 3;
 			dustObject.Fade (0.5f);
 
-			/*
-			Transform spriteTrans = new GameObject ("ShooterSprite").transform;
-
-			spriteTrans.position = shooter.GetTransform ().position;
-			spriteTrans.rotation = shooter.GetTransform ().rotation;
-			spriteTrans.parent = shooter.GetTransform ();
-
-			spriteTrans.localScale = new Vector3 (0.4f, 0.4f, 0.4f);
-
-			SpriteRenderer spriteRenderer = spriteTrans.gameObject.AddComponent<SpriteRenderer> ();
-			spriteRenderer.sprite = shootSprites [0];
-			spriteRenderer.sortingOrder = 3;
-			Tweener fadeTween = spriteRenderer.DOFade (0f, 0.5f);
-			*/
-
 			shooter.SetBulletPoolManager (poolManager);
 
 			shooter
@@ -87,13 +72,6 @@ public class Sample_01_Normal : MonoBehaviour {
 					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 
 					dustObject.Fade(0.5f);
-					/*
-					fadeTween.Kill();
-					Color lastColor = spriteRenderer.color;
-					lastColor.a = 1f;
-					spriteRenderer.color = lastColor;
-					fadeTween = spriteRenderer.DOFade (0f, 0.5f);
-					*/
 				}));
 
 			// Trigger shooting
@@ -105,22 +83,6 @@ public class Sample_01_Normal : MonoBehaviour {
 			dustObject.trans.localScale = new Vector3 (0.4f, 0.4f, 0.4f);
 			dustObject.spriteRenderer.sortingOrder = 3;
 			dustObject.Fade (0.5f);
-
-			/*
-			Transform spriteTrans = new GameObject ("ShooterSprite").transform;
-
-			spriteTrans.position = shooter.GetTransform ().position;
-			spriteTrans.rotation = shooter.GetTransform ().rotation;
-			spriteTrans.parent = shooter.GetTransform ();
-
-			spriteTrans.localScale = new Vector3 (0.4f, 0.4f, 0.4f);
-
-			SpriteRenderer spriteRenderer = spriteTrans.gameObject.AddComponent<SpriteRenderer> ();
-			spriteRenderer.sprite = shootSprites [1];
-			spriteRenderer.sortingOrder = 3;
-			Tweener fadeTween = spriteRenderer.DOFade (0f, 0.5f);
-			*/
-
 
 			shooter.SetBulletPoolManager (poolManager);
 
@@ -134,14 +96,6 @@ public class Sample_01_Normal : MonoBehaviour {
 					bulletObject.GetActor().doTweens.AddTweener(bulletObject.GetTransform ().DOMoveUp (1.5f));
 
 					dustObject.Fade(0.5f);
-
-					/*
-					fadeTween.Kill();
-					Color lastColor = spriteRenderer.color;
-					lastColor.a = 1f;
-					spriteRenderer.color = lastColor;
-					fadeTween = spriteRenderer.DOFade (0f, 0.5f);
-					*/
 				}));
 
 			// Trigger shooting
