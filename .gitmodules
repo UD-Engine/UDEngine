@@ -1,12 +1,12 @@
-[submodule "Engine/Collision"]
+[submodule "Engine/Core/Collision"]
 	path = Engine/Core/Collision
-	url = git@github.com:UD-Engine/Collision.git
-[submodule "Engine/Pool"]
+	url = http://github.com/UD-Engine/Collision.git
+[submodule "Engine/Core/Pool"]
 	path = Engine/Core/Pool
-	url = git@github.com:UD-Engine/Pool.git
-[submodule "Engine/Shooter"]
+	url = http://github.com/UD-Engine/Pool.git
+[submodule "Engine/Core/Shooter"]
 	path = Engine/Core/Shooter
-	url = git@github.com:UD-Engine/Shooter
+	url = http://github.com/UD-Engine/Shooter.git
 [submodule "Engine/Plugin"]
 	path = Engine/Plugin
-	url = git@github.com:UD-Engine/Plugin.git
+	url = http://github.com/UD-Engine/Plugin.git
